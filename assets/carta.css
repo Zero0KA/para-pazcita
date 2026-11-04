@@ -1,0 +1,184 @@
+@font-face {
+  font-family: Carta;
+  src: url("carta.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: Manuscrita;
+  src: url("firma.otf") format("opentype");
+  font-display: swap;
+}
+
+:root {
+  --ciruela: #392448;
+  --tinta: #2d2334;
+  --malva: #844b76;
+  --papel: #fcf4e8;
+  --ilustracion: url("marco-ilustrado.webp");
+  --serif: Carta, Georgia, serif;
+  --manuscrita: Manuscrita, Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+h1, h2, p { margin: 0; }
+
+body {
+  margin: 0;
+  padding: clamp(12px, 3vw, 42px) 16px;
+  background: radial-gradient(ellipse at top, #60416f, #2e2038 68%);
+  color: var(--tinta);
+}
+
+.regalo { max-width: 1024px; margin-inline: auto; container-type: inline-size; }
+
+.carta {
+  position: relative;
+  isolation: isolate;
+  min-height: 150cqw;
+  overflow: hidden;
+  background: var(--papel) var(--ilustracion) center top / 100% 100% no-repeat;
+  box-shadow: 0 15px 45px #20112770;
+}
+
+.portada {
+  height: 39.4cqw;
+  padding-top: 9.5cqw;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  color: var(--ciruela);
+}
+
+.portada::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("trazos.svg") center top / 100% auto no-repeat;
+}
+
+.titulo { width: 53%; }
+
+.titulo h1 {
+  font: 14cqw/.86 var(--manuscrita);
+  letter-spacing: -.04em;
+  transform: rotate(-4deg);
+}
+
+.titulo h1 span {
+  display: block;
+  font-size: 5.8cqw;
+  line-height: .9;
+  letter-spacing: 0;
+  margin-bottom: .65cqw;
+}
+
+.titulo p {
+  margin-top: 0.8cqw;
+  color: var(--malva);
+  font: 4.1cqw/1 var(--manuscrita);
+  transform: rotate(-5deg);
+}
+
+.papel {
+  position: relative;
+  width: 64%;
+  margin: 0 auto;
+  padding: 3.6cqw 6.7cqw 0;
+}
+
+.mensaje {
+  font: 1.92cqw/1.42 var(--serif);
+  overflow-wrap: break-word;
+}
+
+.mensaje h2 {
+  width: fit-content;
+  margin: 0 0 2.45cqw;
+  padding-bottom: .7cqw;
+  border-bottom: 1px solid #b78a9d;
+  color: var(--ciruela);
+  font: 3.8cqw/1.13 var(--manuscrita);
+  transform: rotate(-3deg);
+}
+
+.mensaje p + p { margin-top: 1.6cqw; }
+
+.firma {
+  margin-top: 3.15cqw;
+  color: var(--ciruela);
+  text-align: center;
+  font: 2.75cqw/1.2 var(--manuscrita);
+}
+
+.firma span, .firma strong { display: block; }
+.firma strong { margin-top: .28em; font-size: 1.18em; font-weight: 400; }
+
+.acciones { margin-top: 3.2cqw; text-align: center; }
+
+.descarga {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: .45em;
+  min-height: 44px;
+  padding: .5em 1.02em;
+  border: 1px solid #ad799d;
+  border-radius: 3em;
+  background: #e8bfd7;
+  color: #422a4b;
+  font: 2.65cqw/1 var(--manuscrita);
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.descarga svg { width: .9em; height: .9em; }
+.descarga:hover { background: #f3d3e5; transform: translateY(-2px); }
+.descarga:focus-visible { outline: 2px solid var(--ciruela); outline-offset: 4px; }
+
+.adorno { display: block; width: 13cqw; height: auto; margin: 3.2cqw auto 0; }
+.pie-ilustrado { display: none; }
+
+@media (max-width: 680px) {
+  body { padding: 8px; }
+  .carta { min-height: 0; background: var(--papel); }
+
+  .portada {
+    height: 42cqw;
+    padding-top: 9.7cqw;
+    background: var(--papel) var(--ilustracion) center top / 100% auto no-repeat;
+  }
+
+  .titulo h1 { font-size: 14.2cqw; }
+  .titulo h1 span { font-size: 6.7cqw; }
+  .titulo p { font-size: 4.9cqw; }
+
+  .papel {
+    width: auto;
+    padding: 20px clamp(19px, 7vw, 46px) 22px;
+    border-inline: 1px solid #e4c6d0;
+    margin: -5cqw 3.5% 0;
+    background: linear-gradient(120deg, #fffbf1, var(--papel));
+    box-shadow: 0 -4px 9px #62445118;
+  }
+
+  .mensaje { font-size: clamp(16px, 3.65cqw, 19px); line-height: 1.55; }
+  .mensaje h2 { margin-bottom: 18px; padding-bottom: 4px; font-size: clamp(28px, 6.4cqw, 37px); }
+  .mensaje p + p { margin-top: 13px; }
+  .firma { margin-top: 26px; font-size: clamp(24px, 6cqw, 31px); }
+  .acciones { margin-top: 25px; }
+  .descarga { font-size: clamp(23px, 5.5cqw, 28px); }
+  .adorno { width: 100px; margin-top: 22px; }
+  .pie-ilustrado {
+    display: block;
+    height: 31cqw;
+    background: var(--papel) var(--ilustracion) center bottom / 100% auto no-repeat;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .descarga { transition: none; }
+  .descarga:hover { transform: none; }
+}
